@@ -18,8 +18,9 @@
 </head>
 <body>
 
-    <div class="container d-flex border border-light rounded justify-content-center align-items-center">
-      <table class="table table-bordered">
+    <div class="container d-flex flex-column border border-light rounded justify-content-start align-items-start">
+    
+      <table class="table table-bordered mb-0">
         <thead>
           <tr>
             <th>label</th>
@@ -31,6 +32,7 @@
 
         </tbody>
       </table>
+      <div style="width:100%;"><button id="add_row" style="display:none;position:relative;" class="w-100 btn btn-light btn-sm"><i class="fa fa-plus"></i></button></div>
     </div>
     
     <button id="addrowbutton" style="display:none;"><i class='fa fa-plus'></i></button>
@@ -45,9 +47,9 @@ $(document).ready(function () {
                       <td><input type="text" class="answer form-input form-control" id="answer_${index}" name="answer" /></td>
                     </tr>`);
         }
-addrow();
-addrow();
-addrow();
+        
+        $("#add_row").on("click", addrow);
+        addrow();
 
        $(".q_row").each((i, e)=>{
          const currentRow = $(e);
@@ -57,6 +59,9 @@ addrow();
            currentRow.css("background", "");
 
            $("#body_content .q_row").last()[0].classList.add("last_row");
+           
+           $("#add_row").css("display", "block");
+           
            } else {
              if ($("#body_content .q_row").last().hasClass("last_row")){
                $("#body_content .q_row").last().removeClass("last_row")
